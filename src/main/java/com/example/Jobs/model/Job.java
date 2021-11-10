@@ -21,14 +21,11 @@ public class Job {
     @Column(name="criteria_value")
     private String criteria_value;
 
-    @Column(name="priority")
-    private int priority;
+    @Column(name="period")
+    private int period;
 
-    @Column(name="tmp_priority")
-    private int tmp_priority;
-
-    @Column(name="time_of_last_fetch")
-    private Date last_fetched;
+    @Column(name="period_mod")
+    private int period_mod;
 
     public Long getId() {
         return id;
@@ -65,11 +62,27 @@ public class Job {
     public Job() {
     }
 
-    public Job(Long id, String name_of_site, String criteria, String criteria_value, int priority) {
+    public Job(Long id, String name_of_site, String criteria, String criteria_value, int period) {
         this.id = id;
         this.name_of_site = name_of_site;
         this.criteria = criteria;
         this.criteria_value = criteria_value;
-        this.priority = priority;
+        this.period = period;
+    }
+
+    public int getPeriod() {
+        return period;
+    }
+
+    public void setPeriod(int period) {
+        this.period = period;
+    }
+
+    public int getPeriod_mod() {
+        return period_mod;
+    }
+
+    public void setPeriod_mod(int period_mod) {
+        this.period_mod = period_mod;
     }
 }
