@@ -14,10 +14,10 @@ public class Job {
 
     @Column(name = "name_of_site")
     private String name_of_site;
-
+    //model brand godina ili sve
     @Column(name="criteria")
     private String criteria;
-
+    //podaci ;
     @Column(name="criteria_value")
     private String criteria_value;
 
