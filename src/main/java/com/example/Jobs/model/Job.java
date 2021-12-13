@@ -24,8 +24,19 @@ public class Job {
     @Column(name="period")
     private int period;
 
+    @Column(name="email")
+    private String emial;
+
     @Column(name="period_mod")
     private int period_mod;
+
+    public String getEmial() {
+        return emial;
+    }
+
+    public void setEmial(String emial) {
+        this.emial = emial;
+    }
 
     public Long getId() {
         return id;
