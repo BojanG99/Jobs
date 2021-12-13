@@ -65,10 +65,13 @@ public class JobService {
         Date date=new Date();
         List<Job> jobs= (List<Job>) jobRepository.getByMod(date.getMinutes());
         for(Job job:jobs){
-        kafkaTemplate.send(TOPIC,job);
+        sendJob(job);
         System.out.println("poslato...");
         }
         mod=(mod+1)%5;
         System.out.println("batch started...");
+    }
+    public void sendJob(Job job){
+        kafkaTemplate.send(TOPIC,job);
     }
 }

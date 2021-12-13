@@ -48,6 +48,8 @@ public class JobController {
         job.setPeriod_mod(minutes%job.getPeriod());
         Job ret = jobService.saveJob(job);
         if(ret != null){
+
+            jobService.sendJob(job);
             return new ResponseEntity<Job>(ret, HttpStatus.OK);
         }else{
             return new ResponseEntity<Job>(HttpStatus.FORBIDDEN);
