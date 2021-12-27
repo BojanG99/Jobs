@@ -26,12 +26,7 @@ public class JobService {
     private static final String TOPIC = "kafka_job";
 
 
-    public Job get_Ith_Job(int i){
-        Collection<Job> jobs= (Collection<Job>) jobRepository.get_Ith_Job(i);
-        if(jobs==null && jobs.isEmpty() )return null;
-        Job jobs_array[]= (Job[]) jobs.toArray();
-        return jobs_array[0];
-    }
+
     public List<Job> getAllJobs(){
         return jobRepository.findAll();
     }
@@ -59,16 +54,14 @@ public class JobService {
             return null;
         }
     }
-    private int mod=0;
     @Scheduled(fixedRate = 60000)
     public void startBatch() {
         Date date=new Date();
-        List<Job> jobs= (List<Job>) jobRepository.getByMod(date.getMinutes());
-        for(Job job:jobs){
-        sendJob(job);
-        System.out.println("poslato...");
+        List<Job> jobs= (List<Job>) jobRepository.getReadyJobs(date.getMinutes());
+        for(Job job:jobs) {
+            sendJob(job);
+            System.out.println("poslato...");
         }
-        mod=(mod+1)%5;
         System.out.println("batch started...");
     }
     public void sendJob(Job job){
